@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="utf-8">
+		<title>WoW Quiz Game</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+		<link rel="stylesheet" href="main.css">
+	</head>
+
+	<body>
+
+	<div class="container">
+
+		<h1>World of Warcraft Trivia Game</h1>
+
+		<div class="quiz-container">
+			<h3 class="intro">Test your knowledge of World of Warcraft by answering 10 trivia questions!</h3>
+		
+			<button type="submit" class="start-button" >Start Game</button>
+
+			<div class="hide" id="js-final">
+				<h3>You got <span id="js-total-correct">0</span> of 10 questions right!</h3>
+				<button type="submit" class="start-button">Play Again</button>
+			</div> 
+
+			<div class="section-container hide">
+				<div class="question-container">
+					<p id="js-question">What color are epic items?</p>
+					<div class="column">
+						<p>Question <span id="js-qnumber">1</span> of 10 </p>
+						<p><span id="js-correct">0</span> Correct, <span id="js-incorrect">0</span> Incorrect</p>
+					</div>
+				</div>	
+				
+				<div class="row">
+					<button class="answer-button" id="js-answer-1">Blue</button>
+					<button class="answer-button" id="js-answer-2">Green</button>
+				</div>
+				
+				<div class="row">
+					<button class="answer-button" id="js-answer-3">Orange</button>
+					<button class="answer-button" id="js-answer-4">Purple</button>
+				</div>
+
+			</div>
+
+			
+
+		</div>
+
+	</div>
+
+
+
+
+
+
+
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" ></script>
+	<script type="text/javascript" src="app.js" ></script>
+	</body>
+
+</html>
