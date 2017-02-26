@@ -108,24 +108,48 @@ var data = [
 	var wrong = 0; //track wrong answers
 
 //Click on Start Game
-$('.start-button').on('click', function(event) {
-	event.preventDefault();
+$('#js-start-button').on('click', function(event) {
+	startGame();
+});
 
-	$(this).addClass('green-button').stop().delay(800).queue(function() {
+$('#js-play-again').on('click', function(event) {
+	playAgain();
+});
+
+
+
+function startGame() {
+	event.preventDefault();
+	buildQuestion(0);
+	$('#js-start-button').toggleClass('green-button').stop().delay(800).queue(function() {
 		//Turn button green, then wait 800ms before adding & removing hide
-		$('.quiz-container').children().addClass('hide');
-		$('.section-container').removeClass('hide');
+		$('.intro').toggleClass('hide');
+		$(this).toggleClass('hide');
+		$('.section-container').toggleClass('hide');
 		$('#js-number').text(data[0].id);
 		$('#js-question').text(data[0].q);
+		$('#js-qnumber').text(data[0].id);
 	});
+	updateScore();
+	$index = -1;
+}
 
-});
+function playAgain() {
+	event.preventDefault();
+	$('#js-play-again').addClass('green-button').stop().delay(800).queue(function() {
+		//Turn button green, then wait 800ms before adding & removing hide
+		$('#js-final').toggleClass('hide');
+		$('.intro').toggleClass('hide');
+		$('#js-start-button').toggleClass('hide green-button');
+	});
+	score = 0;
+	wrong = 0;
+}
+
 
 //Give right-wrong feedback & keep score
 $('.answer-button').on('click', function(event) {
 	event.preventDefault();
-
-	/* Act on the event */
 	//capture text inside this button for user answer
 	var userAnswer = $(this).text();
 	//capture current question ID
@@ -182,20 +206,27 @@ function updateQuestion(move) { //updates the questions after answering
 		$('.answer-button').removeClass('green-button');
 		$('.answer-button').removeClass('red-button');
 
-	$("#js-correct").text(score); //updates correct score text
-	$("#js-incorrect").text(wrong);	//updates incorrect score text
+	// $("#js-correct").text(score); //updates correct score text
+	// $("#js-incorrect").text(wrong);	//updates incorrect score text
+	updateScore();
 
 	if ($index <= 9) {
 		buildQuestion($index); //move to next questions
 	} else {
 		displayFinalScore(); //show final score screen
+		$('#js-play-again').removeClass('green-button');
 	}
 
 }
 
+function updateScore() {
+	$("#js-correct").text(score); //updates correct score text
+	$("#js-incorrect").text(wrong);	//updates incorrect score text
+}
+
 function displayFinalScore() { //shows final score screen at end
-	$('.section-container').children().addClass('hide');
-	$('#js-final').removeClass('hide');
+	$('.section-container').toggleClass('hide');
+	$('#js-final').toggleClass('hide');
 	$("#js-total-correct").text(score); //updates correct score text
 	$index = -1;
 }
